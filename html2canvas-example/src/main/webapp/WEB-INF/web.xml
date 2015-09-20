@@ -1,0 +1,31 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>HTML2Canvas Proxy in Java</display-name>
+
+	<servlet>
+		<servlet-name>html2canvas-servlet</servlet-name>
+		<servlet-class>com.inutilfutil.html2canvas.Html2CanvasProxyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>html2canvas-servlet</servlet-name>
+		<url-pattern>/servlet/html2canvas</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>html2canvas-jaxrs</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>
+				com.inutilfutil.html2canvas.Html2CanvasProxyService
+			</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>html2canvas-jaxrs</servlet-name>
+		<url-pattern>/jax-rs/*</url-pattern>
+	</servlet-mapping>
+</web-app>
